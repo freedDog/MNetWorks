@@ -10,38 +10,36 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 import java.net.InetSocketAddress;
-public class EchoServer {
+
+import com.fg.network.INetWorkServer;
+import com.fg.network.handler.LengthBasedinitializer;
+public class NetWorkBootstrap {
 	private final int port;
-	public EchoServer(int port){
+	private INetWorkServer ioServer;
+	public NetWorkBootstrap(int port,INetWorkServer ioServer){
 		this.port=port;
+		this.ioServer=ioServer;
 	}
 	public static void main(String[] args){
 		if(args.length!=1){
-			System.out.println("Usage:"+EchoServer.class.getSimpleName()+" ");	
+			System.out.println("Usage:"+NetWorkBootstrap.class.getSimpleName()+" ");	
 		}
 		int port=Integer.parseInt(args[0]);
 		try{
-			new EchoServer(port).start();
+			//new NetWorkBootstrap(port).start();
 			System.out.println("server start");
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 	public void start() throws Exception {
-		final EchoServerHandler serverHandler=new EchoServerHandler();
 		EventLoopGroup group=new NioEventLoopGroup();
 		try{
 				ServerBootstrap b=new ServerBootstrap();
 				b.group(group)
 						.channel(NioServerSocketChannel.class)
 						.localAddress(new InetSocketAddress(port));
-				b.childHandler(new ChannelInitializer (){
-					@Override 
-					protected void initChannel(Channel ch) 
-						throws Exception {
-						ch.pipeline().addLast(serverHandler);
-					}
-				});
+				b.childHandler(new LengthBasedinitializer(this.ioServer));
 				ChannelFuture f=b.bind().sync();
 				f.channel().closeFuture().sync();
 				

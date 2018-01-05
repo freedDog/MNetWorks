@@ -27,7 +27,7 @@ public class FixedLengthFrameDecoderTest {
 		read.release();
 
 		read=(ByteBuf)channel.readInbound();
-		assertEquals(buf.readSlice(3));
+		assertEquals(buf.readSlice(3),read);
 		read.release();
 	}
 	@Test

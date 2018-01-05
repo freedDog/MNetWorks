@@ -13,14 +13,14 @@ public class AbsIntegerEncoderTest {
 	public void testEncoded(){
 		ByteBuf buf=Unpooled.buffer();
 		for(int i=0;i<10;i++){
-			buf.writeInt(i);	
+			buf.writeInt(i*-1);	
 		}	
 		EmbeddedChannel channel=new EmbeddedChannel(new AbsIntegerEncoder());
-		assertTrue(channel.writeOutbound());
+		assertTrue(channel.writeOutbound(buf));
 		assertTrue(channel.finish());
 		
 		for(int i=0;i<10;i++){
-			assertEquals(i,channel.readOutbound());
+			assertEquals(i,(int)channel.readOutbound());
 		}	
 		assertNull(channel.readOutbound());
 	}

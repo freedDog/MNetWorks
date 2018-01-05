@@ -86,7 +86,13 @@
 				</execution>
 			</executions>
 			<configuration>
-				<mainClass>com.fg.network.EchoServer</mainClass>
+				<arguments>
+                      <argument>-Dcom.sun.management.jmxremote.port=2222</argument>
+                      <argument> -Dcom.sun.management.jmxremote.ssl=false</argument>
+                      <argument> -Dcom.sun.management.jmxremote.authenticate=false</argument>
+                      <!--argument>-Djava.rmi.server.hostname=192.168.4.94</argument-->
+                  </arguments>
+				<mainClass>com.fg.network.NetWorkBootstrap</mainClass>
 				<arguments>
 					<argument>8030</argument>
 				</arguments>
