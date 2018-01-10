@@ -5,10 +5,10 @@ import static junit.framework.Assert.*;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.embedded.EmbeddedChannel;
-import com.fg.network.decoder.FixedLengthFrameDecoder;
+//import com.fg.network.decoder.FixedLengthFrameDecoder;
 
 public class FixedLengthFrameDecoderTest {
-	@Test
+	/**@Test
 	public void testFramesDecodes(){
 		ByteBuf buf=Unpooled.buffer();
 		for(int i=0;i<9;i++){
@@ -58,6 +58,6 @@ public class FixedLengthFrameDecoderTest {
 
 		assertNull(channel.readInbound());
 		buf.release();
-	}
+	}*/
 }
 
