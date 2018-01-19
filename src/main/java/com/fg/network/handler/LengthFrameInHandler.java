@@ -47,14 +47,7 @@ public final  class LengthFrameInHandler extends ChannelInboundHandlerAdapter {
 		@Override
 		public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 				//处理帧的数据
-				System.out.println("server read message:"+((Message)msg).getId());
-				Channel channel=ctx.channel();
-				//ByteBufAllocator allocator=channel.alloc();
-				//ByteBuf buf=allocator.buffer();
-				//channel.write(buf);
-				channel.write(new TestMessage());
-				System.out.println("server write message");
-				this.ioServer.doCommand(ctx,(Message)msg);
+				this.ioServer.doCommand(ctx,(ByteBuf)msg);
 		}
 		@Override
 		public void exceptionCaught(ChannelHandlerContext channelHandlerContext, Throwable throwable) throws Exception {

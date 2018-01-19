@@ -16,22 +16,16 @@ import com.fg.network.handler.LengthBasedinitializer;
 public class NetWorkBootstrap {
 	private final int port;
 	private INetWorkServer ioServer;
+	//设置服务器用于处理channel事件的EventLoop
+	private EventLoopGroup grop;
+
 	public NetWorkBootstrap(int port,INetWorkServer ioServer){
 		this.port=port;
 		this.ioServer=ioServer;
 	}
-	public static void main(String[] args){
-		if(args.length!=1){
-			System.out.println("Usage:"+NetWorkBootstrap.class.getSimpleName()+" ");	
-		}
-		int port=Integer.parseInt(args[0]);
-		try{
-			//new NetWorkBootstrap(port).start();
-			System.out.println("server start");
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	}
+	/**
+	 * 开启网络连接
+	 */
 	public void start() throws Exception {
 		EventLoopGroup group=new NioEventLoopGroup();
 		try{
@@ -47,6 +41,12 @@ public class NetWorkBootstrap {
 		}finally{
 			group.shutdownGracefully().sync();
 		}	
+	
+	}
+	/**
+	 * 关闭所有的连接
+	 */
+	public void stop(){
 	
 	}
 }
