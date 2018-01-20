@@ -20,29 +20,23 @@ public final  class LengthFrameInHandler extends ChannelInboundHandlerAdapter {
 		}
 		@Override
 		public void channelRegistered(ChannelHandlerContext channelHandlerContext) throws Exception {
-			System.out.println("server registered");
 			this.ioServer.channelRegistered(channelHandlerContext);
 		}
 		@Override
 		public void channelUnregistered(ChannelHandlerContext channelHandlerContext) throws Exception {
-			System.out.println("server unregistered");
 		}	
 		@Override
 		public void channelInactive(ChannelHandlerContext channelHandlerContext) throws Exception {
-			System.out.println("server inactive");
 			this.ioServer.channelActive(channelHandlerContext);
 		}
 		@Override
 		public void channelReadComplete(ChannelHandlerContext channelHandlerContext) throws Exception {
-			System.out.println("server read complete");
 		}
 		@Override
 		public void channelWritabilityChanged(ChannelHandlerContext channelHandlerContext) throws Exception {
-				System.out.println("server write changed");
 		}
 		@Override
 		public void userEventTriggered(ChannelHandlerContext channelHandlerContext, Object object) throws Exception {
-				System.out.println("server user event ");
 		}
 		@Override
 		public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
@@ -56,7 +50,6 @@ public final  class LengthFrameInHandler extends ChannelInboundHandlerAdapter {
 		}
 		@Override
 		public void channelActive(ChannelHandlerContext ctx)throws Exception{
-			System.out.println("server active ");		
 		}
 }
 
